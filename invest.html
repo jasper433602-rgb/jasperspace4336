@@ -488,6 +488,204 @@
         .neon-breath { position: absolute; inset: -6px; border-radius: 16px; pointer-events: none; }
         @keyframes neonPulse { 0% { box-shadow: 0 0 0 0 rgba(231,76,60,0.12); } 50% { box-shadow: 0 0 60px 8px rgba(231,76,60,0.12); } 100% { box-shadow: 0 0 0 0 rgba(231,76,60,0.12); } }
         .neon-breath { animation: neonPulse 1.8s ease-in-out infinite; }
+
+        /* --- 結業證書樣式 --- */
+        .cert-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+        }
+        .cert-modal-overlay.show {
+            display: flex;
+        }
+        .cert-container {
+            position: relative;
+            width: min(90vw, 720px);
+            background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
+            border: 3px solid #d4a574;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: certSlideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        @keyframes certSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .cert-header {
+            margin-bottom: 24px;
+        }
+        .cert-seal {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 16px;
+            background: radial-gradient(circle at 30% 30%, #ffd700, #d4a574);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3), inset -2px -2px 5px rgba(0, 0, 0, 0.1);
+            animation: certSealSpin 3s linear infinite;
+        }
+        @keyframes certSealSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .cert-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1e293b;
+            margin: 16px 0 8px;
+            letter-spacing: 2px;
+        }
+        .cert-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+        .cert-divider {
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4a574, transparent);
+            margin: 20px auto;
+        }
+        .cert-content {
+            margin: 24px 0;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.8;
+        }
+        .cert-score {
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(16, 185, 129, 0.1));
+            border: 2px solid #d4a574;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .cert-score-label {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .cert-score-value {
+            font-size: 48px;
+            font-weight: bold;
+            color: #d4a574;
+            margin: 8px 0;
+        }
+        .cert-score-message {
+            font-size: 13px;
+            color: #666;
+            font-weight: 500;
+        }
+        .cert-footer {
+            margin-top: 32px;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #d4a574;
+            padding-top: 16px;
+        }
+        .cert-footer-date {
+            margin-bottom: 8px;
+        }
+        .cert-footer-text {
+            font-style: italic;
+        }
+        .cert-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+        .cert-btn {
+            background: linear-gradient(135deg, #d4a574, #b8915a);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 999px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(212, 165, 116, 0.25);
+        }
+        .cert-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(212, 165, 116, 0.35);
+        }
+        .cert-btn:active {
+            transform: translateY(0);
+        }
+        .cert-btn.secondary {
+            background: white;
+            color: #d4a574;
+            border: 2px solid #d4a574;
+            box-shadow: none;
+        }
+        .cert-btn.secondary:hover {
+            background: #f5f0e8;
+        }
+
+        /* --- 彩色紙花洒落動畫 --- */
+        @keyframes confettiFall {
+            0% {
+                opacity: 1;
+                transform: translateY(-100vh) rotateZ(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotateZ(720deg);
+            }
+        }
+        @keyframes confettiSway {
+            0%, 100% {
+                transform: translateX(0) rotateZ(0deg);
+            }
+            25% {
+                transform: translateX(40px) rotateZ(90deg);
+            }
+            50% {
+                transform: translateX(-20px) rotateZ(180deg);
+            }
+            75% {
+                transform: translateX(30px) rotateZ(270deg);
+            }
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            z-index: 2999;
+        }
+        .confetti.circle {
+            border-radius: 50%;
+        }
+        .confetti.square {
+            border-radius: 0;
+        }
+        .confetti.star {
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+
 </style>
 </head>
 <body>
@@ -888,55 +1086,128 @@
                     </div>
                 </div>
 
-                <!-- 本益比計算概念補充（單欄排版） -->
-                <div style="background: #fffaf6; padding: 16px; border-radius: 12px; border: 1px solid #f5e6d8; margin-top: 16px;">
-                    <h4 style="margin: 0 0 12px 0; font-size: 15px; color: #6b5b95;">📊 本益比計算概念補充</h4>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-bottom: 12px;">
-                        <!-- 核心公式 -->
-                        <div style="background: white; padding: 12px; border-radius: 8px; border: 1px solid #f0e6d8;">
-                            <strong style="color: #d35400; font-size: 13px;">🧮 核心數學關係</strong>
-                            <div style="font-size: 12px; color: #333; line-height: 1.6; margin-top: 6px;">
-                                <div style="margin: 4px 0;"><strong>PE = 市價 / EPS</strong></div>
-                                <div style="margin: 4px 0;"><strong>市價 = EPS × PE</strong></div>
-                                <div style="margin: 4px 0;"><strong>EPS = 市價 / PE</strong></div>
-                                <div style="color: #666; font-size: 11px; margin-top: 6px;">三式等價；常用單位：市價（元）、EPS（元）、PE（倍）</div>
+                <!-- 本益比計算概念補充 - 深入篇 -->
+                <div style="background: #fffaf6; padding: 20px; border-radius: 12px; border: 2px solid #f5e6d8; margin-top: 16px;">
+                    <h4 style="margin: 0 0 16px 0; font-size: 16px; color: #6b5b95;">📊 本益比計算概念補充 — 股票估值的核心底層邏輯</h4>
+                    <p style="font-size: 13px; color: #555; line-height: 1.8; margin: 0 0 16px 0;">EPS（每股盈餘）、本益比（PE Ratio）、市價這三者的關係是實務上進行股票估值最核心的底層邏輯。它們之間不是獨立存在，而是有著明確的數學關係與推導順序。理解這個結構，就能掌握法人分析師與成熟投資人的決策框架。</p>
+
+                    <!-- 第一部分：核心數學關係 -->
+                    <div style="background: white; padding: 16px; border-radius: 10px; border-left: 4px solid #d35400; margin-bottom: 16px;">
+                        <h5 style="margin: 0 0 12px 0; color: #d35400; font-size: 14px;">🧮 核心數學關係 — 三式等價</h5>
+                        <p style="font-size: 13px; color: #555; margin-bottom: 12px;">這三者的基本公式非常直觀。透過簡單的數學移項，可以延伸出三個完全等價的形式：</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; border: 1px solid #e9ecef; text-align: center;">
+                                <div style="font-size: 11px; color: #999; margin-bottom: 4px;">本益比</div>
+                                <div style="font-size: 14px; font-weight: bold; color: #d35400;">PE = 市價 ÷ EPS</div>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; border: 1px solid #e9ecef; text-align: center;">
+                                <div style="font-size: 11px; color: #999; margin-bottom: 4px;">市場價格</div>
+                                <div style="font-size: 14px; font-weight: bold; color: #2980b9;">市價 = EPS × PE</div>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; border: 1px solid #e9ecef; text-align: center;">
+                                <div style="font-size: 11px; color: #999; margin-bottom: 4px;">每股盈餘</div>
+                                <div style="font-size: 14px; font-weight: bold; color: #27ae60;">EPS = 市價 ÷ PE</div>
+                            </div>
+                        </div>
+                        <div style="background: #f0f9ff; padding: 10px; border-radius: 8px; border-left: 3px solid #2980b9; font-size: 12px; color: #1a5276;">
+                            <strong>💡 關鍵認知：</strong> 這三個公式完全等價，背後的邏輯是：給定其中任意兩個變數，第三個就能被唯一確定。股票估值的藝術與科學，就在於「如何合理地預估或判斷這三者」。
+                        </div>
+                    </div>
+
+                    <!-- 第二部分：推導順序 -->
+                    <div style="background: white; padding: 16px; border-radius: 10px; border-left: 4px solid #27ae60; margin-bottom: 16px;">
+                        <h5 style="margin: 0 0 14px 0; color: #27ae60; font-size: 14px;">📈 推導順序 — 兩個維度的先後因果</h5>
+                        
+                        <div style="margin-bottom: 16px;">
+                            <h6 style="margin: 0 0 10px 0; color: #555; font-size: 13px;"><strong>1️⃣ 數據產生的自然順序：EPS → 市價 → 本益比</strong></h6>
+                            <p style="font-size: 12px; color: #555; margin: 0 0 10px 0; line-height: 1.8;">在邏輯推導上，這三者有明確的先後因果關係。順序如下：</p>
+                            <div style="display: grid; gap: 10px;">
+                                <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 4px solid #27ae60;">
+                                    <div style="font-size: 12px; font-weight: bold; color: #27ae60;">📊 第一步：EPS（基本面底氣）</div>
+                                    <div style="font-size: 12px; color: #555; margin-top: 4px; line-height: 1.6;">公司每季公布財報，算出過去一段時間實際賺了多少錢。這是最本質、最無法造假的客觀數據。每股盈餘反映的是企業真實的賺錢能力。</div>
+                                </div>
+                                <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 4px solid #3498db;">
+                                    <div style="font-size: 12px; font-weight: bold; color: #3498db;">💹 第二步：市價（市場即時情緒）</div>
+                                    <div style="font-size: 12px; color: #555; margin-top: 4px; line-height: 1.6;">資金在市場上撮合，受到未來的展望、大盤氣氛、流動性等影響，即時反映出當下的股票價格。市價是動態的，每一秒都在變化。</div>
+                                </div>
+                                <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 4px solid #e67e22;">
+                                    <div style="font-size: 12px; font-weight: bold; color: #e67e22;">📐 第三步：本益比（計算出的評價倍數）</div>
+                                    <div style="font-size: 12px; color: #555; margin-top: 4px; line-height: 1.6;">有了確定的「市價」與「EPS」後，我們才能<strong>計算</strong>出目前的本益比。此時的本益比是一個「結果」，用來反映市場願意為這家公司的一元盈餘付出多少代價。</div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- 推導順序 -->
-                        <div style="background: white; padding: 12px; border-radius: 8px; border: 1px solid #f0e6d8;">
-                            <strong style="color: #d35400; font-size: 13px;">📈 數據推導順序</strong>
-                            <div style="font-size: 12px; color: #333; line-height: 1.6; margin-top: 6px;">
-                                <div style="margin: 4px 0;"><strong>自然順序：</strong><br>EPS（財報）→ 市價 → PE（結果）</div>
-                                <div style="margin: 6px 0 0 0;"><strong>分析順序：</strong><br>預估 EPS → 合理PE → 目標價</div>
-                                <div style="color: #666; font-size: 11px; margin-top: 4px;">PE 是市場情緒的結果指標，非原始財報數據</div>
-                            </div>
-                        </div>
-
-                        <!-- 參數判斷 -->
-                        <div style="background: white; padding: 12px; border-radius: 8px; border: 1px solid #f0e6d8;">
-                            <strong style="color: #d35400; font-size: 13px;">🔍 情境應用</strong>
-                            <div style="font-size: 12px; color: #333; line-height: 1.6; margin-top: 6px;">
-                                <div style="margin: 4px 0;"><strong>A. 尋找目標價：</strong><br>目標價 = 預估 EPS × 合理PE</div>
-                                <div style="margin: 6px 0 0 0;"><strong>B. 評估當前貴賤：</strong><br>當前 PE = 市價 / EPS（TTM）<br>與河流圖或同業比較</div>
+                        <div style="border-top: 1px dashed #ddd; padding-top: 16px;">
+                            <h6 style="margin: 0 0 10px 0; color: #555; font-size: 13px;"><strong>2️⃣ 投資分析的邏輯順序：預估 EPS → 合理本益比 → 推導市價</strong></h6>
+                            <p style="font-size: 12px; color: #555; margin: 0 0 10px 0; line-height: 1.8;">在實際做投資決策時，順序會完全反過來。我們不會被動等待市價跌下來才去算本益比，而是去<strong>主動推導</strong>目標價。</p>
+                            <div style="background: #f0f9ff; padding: 12px; border-radius: 8px; border: 1px solid #bae7ff; font-size: 12px; color: #1a5276; line-height: 1.8;">
+                                <strong>法人分析師的思維模式：</strong><br>
+                                1. 透過產業調研、訪廠、財務預測，估算出公司<strong>明年或後年的 EPS</strong><br>
+                                2. 參考公司的歷史本益比區間、同業估值、成長率水準，給予一個<strong>合理的本益比倍數</strong>（例如 15 倍）<br>
+                                3. 兩者相乘，推算出這檔股票未來的<strong>目標市價</strong><br>
+                                4. 將目標價與現在市價比較，決定是否建議買入或賣出
                             </div>
                         </div>
                     </div>
 
-                    <!-- 實務注意與總結 -->
+                    <!-- 第三部分：兩大實務情境的對比表 -->
+                    <div style="background: white; padding: 16px; border-radius: 10px; border-left: 4px solid #9b59b6; margin-bottom: 16px;">
+                        <h5 style="margin: 0 0 14px 0; color: #9b59b6; font-size: 14px;">🎯 實務應用 — 兩大常見情境</h5>
+                        <p style="font-size: 12px; color: #555; margin-bottom: 12px;">在法人或成熟投資人的研究報告中，通常以「預估 EPS」與「合理本益比」這兩者，去判斷/預測第三者——「合理的未來市價」。</p>
+                        
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 12px; line-height: 1.6;">
+                                <thead>
+                                    <tr style="background: #f5e6d8;">
+                                        <th style="padding: 10px; text-align: left; border: 1px solid #e9d8c3; color: #6b5b95;"><strong>分析情境</strong></th>
+                                        <th style="padding: 10px; text-align: left; border: 1px solid #e9d8c3; color: #6b5b95;"><strong>已知（拿來判斷的兩者）</strong></th>
+                                        <th style="padding: 10px; text-align: left; border: 1px solid #e9d8c3; color: #6b5b95;"><strong>未知（被預測或評估的第三者）</strong></th>
+                                        <th style="padding: 10px; text-align: left; border: 1px solid #e9d8c3; color: #6b5b95;"><strong>實務應用步驟</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background: #f9f5ff;">
+                                        <td style="padding: 10px; border: 1px solid #e9d8c3; color: #6b5b95; font-weight: bold;">情境 A：尋找目標價<br>（最主流的法人作法）</td>
+                                        <td style="padding: 10px; border: 1px solid #e9d8c3;">✅ <strong>預估 EPS</strong><br><br>➕<br><br>✅ <strong>合理本益比</strong></td>
+                                        <td style="padding: 10px; border: 1px solid #e9d8c3;">❓ 估算<br><strong>合理市價<br>（目標價）</strong></td>
+                                        <td style="padding: 10px; border: 1px solid #e9d8c3;">
+                                            1. 透過產業調研，預估公司明年的 <strong>EPS</strong><br>
+                                            2. 參考歷史或同業，給予 <strong>合理本益比</strong>（如 15 倍）<br>
+                                            3. 兩者相乘 → <strong>目標市價</strong><br>
+                                            4. 比較現價判斷買賣點
+                                        </td>
+                                    </tr>
+                                    <tr style="background: #f0f9ff;">
+                                        <td style="padding: 10px; border: 1px solid #e9d8c3; color: #2980b9; font-weight: bold;">情境 B：評估當前本益比高低<br>（尋找買賣點）</td>
+                                        <td style="padding: 10px; border: 1px solid #e9d8c3;">✅ <strong>目前市價</strong><br><br>➕<br><br>✅ <strong>近四季 EPS</strong><br>（TTM）</td>
+                                        <td style="padding: 10px; border: 1px solid #e9d8c3;">❓ 評估<br><strong>當前本益比<br>的合理性</strong></td>
+                                        <td style="padding: 10px; border: 1px solid #e9d8c3;">
+                                            1. 拿現在市場上跳動的 <strong>市價</strong>除以 <strong>EPS</strong> → 當前 PE<br>
+                                            2. 查看本益比河流圖，判斷 PE 落在歷史的相對高點或低點<br>
+                                            3. 同業對比，看 PE 是否合理<br>
+                                            4. 決定現價是「便宜」還是「太貴」
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 第四部分：核心總結 -->
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                        <div style="background: white; padding: 10px; border-radius: 8px; border-left: 3px solid #d35400; font-size: 12px;">
-                            <strong style="color: #d35400;">⚡ 實務注意</strong>
-                            <ul style="margin: 4px 0 0 12px; padding: 0; color: #555; line-height: 1.5;">
-                                <li>EPS 質量優先（關注一次性項目、庫藏股）</li>
-                                <li>成長股 PE 偏高是合理現象</li>
-                                <li>利率變動直接影響合理 PE</li>
+                        <div style="background: white; padding: 12px; border-radius: 8px; border-left: 4px solid #d35400;">
+                            <strong style="color: #d35400; font-size: 12px;">⚡ 實務判斷重點</strong>
+                            <ul style="margin: 6px 0 0 12px; padding: 0; color: #555; line-height: 1.6; font-size: 12px;">
+                                <li><strong>EPS 質量優先：</strong> 關注一次性損益、庫藏股、會計準則變更</li>
+                                <li><strong>成長股 PE 偏高：</strong> 高成長率企業給予高 PE 倍數是合理現象</li>
+                                <li><strong>利率環境很重要：</strong> 升息環境下合理 PE 下降，降息環境下合理 PE 上升</li>
+                                <li><strong>安全邊際：</strong> 目標價與現價的距離越大，安全邊際越高</li>
                             </ul>
                         </div>
-                        <div style="background: #fff8f0; padding: 10px; border-radius: 8px; border-left: 3px solid #d35400; font-size: 12px;">
-                            <strong style="color: #d35400;">💡 核心總結</strong>
-                            <p style="margin: 4px 0; color: #555;">EPS 是公司的<strong>骨架</strong>，決定體量；PE 是市場給的<strong>血肉</strong>，決定價格。兩者缺一不可。</p>
+                        <div style="background: #fff8f0; padding: 12px; border-radius: 8px; border-left: 4px solid #d35400;">
+                            <strong style="color: #d35400; font-size: 12px;">💡 核心總結</strong>
+                            <p style="margin: 6px 0; color: #555; font-size: 12px; line-height: 1.7;"><strong>賺錢能力（EPS）是骨架</strong>，決定公司本身有多值錢；<strong>市場情緒（本益比）是血肉</strong>，決定市場願意付多少錢。兩者結合才組裝出最終的價格（市價）。</p>
+                            <p style="margin: 6px 0 0 0; color: #555; font-size: 12px; line-height: 1.7;"><strong>因此，用「預估 EPS」乘以「你願意給它的估值倍數（合理本益比）」，就能算出這檔股票值多少錢（目標市價）。</strong></p>
                         </div>
                     </div>
                 </div>
@@ -2257,14 +2528,54 @@
         </div>
     </section>
 
-    <div style="text-align: center; margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px; margin-bottom: 50px;">
-        <h3 style="color: var(--primary-color);">🎓 恭喜你完成新手導航！</h3>
-        <p style="color: #666;">投資是一場馬拉松。保住本金，穩定產出，時間會給你應有的報酬。</p>
-        <button onclick="window.scrollTo(0,0)" style="background: var(--primary-color); color: white; border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; font-weight: bold; transition: 0.3s;">
-            ⬆️ 回到頂端重新複習
-        </button>
-    </div>
+    <!-- 結業證書模態框 -->
+    <div class="cert-modal-overlay" id="cert-modal">
+        <div class="cert-container">
+            <div class="cert-header">
+                <div class="cert-seal">🏆</div>
+                <div class="cert-title">投資理財</div>
+                <div class="cert-title" style="font-size: 24px; letter-spacing: 1px;">結業證書</div>
+                <div class="cert-subtitle">Certificate of Investment & Finance Literacy</div>
+                <div class="cert-divider"></div>
+            </div>
+            
+            <div class="cert-content">
+                <p style="font-size: 16px; margin: 16px 0;">本證書頒發給</p>
+                <p style="font-size: 18px; font-weight: bold; color: #1e293b; margin: 12px 0;">親愛的投資學習者</p>
+                <p style="font-size: 14px; color: #666; margin-top: 16px; line-height: 1.8;">
+                    茲証明該學習者已完成本站投資理財全面課程，<br>
+                    並在畢業測驗中展現了扎實的理財知識與投資概念。
+                </p>
+            </div>
 
+            <div class="cert-score">
+                <div class="cert-score-label">測驗成績</div>
+                <div class="cert-score-value" id="cert-score-value">0/12</div>
+                <div class="cert-score-message" id="cert-score-message">恭喜通過測驗！</div>
+            </div>
+
+            <div class="cert-content" style="font-size: 13px;">
+                <p>你已掌握投資的核心邏輯：</p>
+                <p style="color: #555; line-height: 2;">
+                    ✓ 複利的力量與時間價值<br>
+                    ✓ K線與技術面分析<br>
+                    ✓ 基本面估值與本益比<br>
+                    ✓ ETF配置與風險管理<br>
+                    ✓ 投資心法與資產識別<br>
+                </p>
+            </div>
+
+            <div class="cert-footer">
+                <div class="cert-footer-date">核發日期：<span id="cert-date">2024年12月15日</span></div>
+                <div class="cert-footer-text">願你的投資之路穩健而充滿理性。<br>記住：時間與耐心是最好的投資朋友。</div>
+            </div>
+
+            <div class="cert-buttons">
+                <button class="cert-btn" onclick="window.print()">🖨️ 列印證書</button>
+                <button class="cert-btn secondary" onclick="closeCertificate()">👉 開始投資之旅</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -2884,20 +3195,95 @@
         const feedbackMsg = document.getElementById('quiz-feedback-msg');
         const titleMsg = document.getElementById('quiz-title-msg');
         scoreDiv.innerText = score + ' / 12';
+        
+        let certificateQualified = false;
         if (score <= 3) {
             titleMsg.innerText = '💪 繼續加油！';
             feedbackMsg.innerText = '投資是一條需要時間沉澱的路。' + '建議從第一章重新讀起，' + '特別注意 ETF 費用率、' + '偽資產識別與加密貨幣風險這三個部分。';
         } else if (score <= 6) {
             titleMsg.innerText = '👍 不錯的開始！';
             feedbackMsg.innerText = '你已掌握基礎概念，但部分進階觀念還需加強。' + '建議重點複習第六、七、八章的內容，' + '尤其是風險管理與資產識別的部分。';
+            certificateQualified = true;
         } else if (score <= 9) {
             titleMsg.innerText = '🌟 優異表現！';
             feedbackMsg.innerText = '你已具備完整的投資基礎知識。' + '接下來可以開始閱讀書單章節推薦的書籍，' + '把理論轉化為你自己的投資框架。';
+            certificateQualified = true;
         } else {
             titleMsg.innerText = '🏆 滿分達人！';
             feedbackMsg.innerText = '恭喜你完整掌握本站所有核心概念！' + '從複利到加密貨幣風險，從偽資產到書單，' + '你已經建立了超越大多數新手的財商基礎。' + '現在最重要的一步：開始行動。';
+            certificateQualified = true;
         }
         document.getElementById('quiz-final').style.display = 'block';
+        
+        // 如果測驗通過（≥4分），顯示結業證書
+        if (certificateQualified) {
+            setTimeout(() => {
+                showCertificate(score);
+            }, 600);
+        }
+    }
+
+    function showCertificate(score) {
+        // 設定證書中的成績
+        document.getElementById('cert-score-value').innerText = score + ' / 12';
+        
+        // 根據分數設定不同的讚美詞
+        const scoreMessages = {
+            4: '通過測驗，開啟投資之路',
+            5: '通過測驗，開啟投資之路',
+            6: '表現良好，基礎紮實',
+            7: '表現良好，基礎紮實',
+            8: '表現優異，知識完整',
+            9: '表現優異，知識完整',
+            10: '表現傑出，掌握精髓',
+            11: '表現傑出，掌握精髓',
+            12: '完美達成，財商大師'
+        };
+        document.getElementById('cert-score-message').innerText = scoreMessages[score] || '恭喜通過測驗！';
+        
+        // 設定證書日期
+        const today = new Date();
+        const dateStr = today.getFullYear() + '年' + (today.getMonth() + 1) + '月' + today.getDate() + '日';
+        document.getElementById('cert-date').innerText = dateStr;
+        
+        // 顯示證書模態框
+        const certModal = document.getElementById('cert-modal');
+        certModal.classList.add('show');
+        
+        // 播放彩色紙花動畫
+        createConfetti();
+    }
+
+    function closeCertificate() {
+        document.getElementById('cert-modal').classList.remove('show');
+        resetQuiz();
+    }
+
+    function createConfetti() {
+        const confettiCount = 60; // 紙花數量
+        const colors = ['#d4a574', '#ffd700', '#27ae60', '#0ea5a4', '#e67e22', '#9b59b6', '#e74c3c', '#f39c12'];
+        const shapes = ['circle', 'square', 'star'];
+        
+        for (let i = 0; i < confettiCount; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti ' + shapes[Math.floor(Math.random() * shapes.length)];
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animation = `confettiFall ${2 + Math.random() * 1.5}s linear forwards`;
+            confetti.style.animationDelay = Math.random() * 0.3 + 's';
+            
+            // 添加左右擺動效果
+            const sway = Math.random() * 100 + 100;
+            confetti.style.setProperty('--sway-distance', sway + 'px');
+            confetti.style.animation += `, confettiSway ${sway / 100}s ease-in-out infinite`;
+            
+            document.body.appendChild(confetti);
+            
+            // 動畫完成後移除元素
+            setTimeout(() => {
+                confetti.remove();
+            }, (2 + Math.random() * 1.5) * 1000);
+        }
     }
 
     function resetQuiz() {
